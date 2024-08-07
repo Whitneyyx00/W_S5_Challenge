@@ -14,10 +14,12 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   let learners = [] // fix this
 
   try {
-    const learnersResponse = await axios.getAdapter('http://localhost:3003/api/learners');
+    const learnersResponse = await 
+  axios.get('http://localhost:3003/api/learners');
     learners = learnersResponse.data;
 
-    const mentorsResponse = await axios.getAdapter('http://localhost:3003/api/mentors');
+    const mentorsResponse = await 
+  axios.get('http://localhost:3003/api/mentors');
     mentors = mentorsResponse.data;
   } catch (error) {
     console.error('Error fetching data:', error.message);
@@ -78,7 +80,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     heading.classList.add('heading');
     email.classList.add('email');
     mentorsHeading.classList.add('mentors-heading');
-    mentorsList.classList.add('mentors-list');
+    mentorsList.classList.add('mentors-list', 'hidden');
 
     heading.textContent = learner.fullName;
     email.textContent = learner.email;
@@ -93,6 +95,10 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     card.appendChild(heading);
     card.appendChild(email);
     card.appendChild(mentorsHeading);
+    card.appendChild(mentorsList);
+    cardsContainer.appendChild(card);
+
+    card.dataset.fullName = learner.fullName;
     // 👆 ==================== TASK 3 END ====================== 👆
 
     // 👆 WORK ONLY ABOVE THIS LINE 👆
