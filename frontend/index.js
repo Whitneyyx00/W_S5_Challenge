@@ -8,9 +8,20 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   // 🧠 Use Axios to GET learners and mentors.
   // ❗ Use the variables `mentors` and `learners` to store the data.
   // ❗ Use the await keyword when using axios.
+  const axios = require('axios');
 
   let mentors = [] // fix this
   let learners = [] // fix this
+
+  try {
+    const learnersResponse = await axios.getAdapter('http://localhost:3003/api/learners');
+    learners = learnersResponse.data;
+
+    const mentorsResponse = await axios.getAdapter('http://localhost:3003/api/mentors');
+    mentors = mentorsResponse.data;
+  } catch (error) {
+    console.error('Error fetching data:', error.message);
+  }
 
   // 👆 ==================== TASK 1 END ====================== 👆
 
@@ -28,7 +39,17 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   //     "Grace Hopper"
   //   ]`
   // }
+  const mentorMap = mentors.reduce((map, mentor) => {
+    map[mentor.id] = mentor.name;
+    return map;
+  }, {});
 
+  learners = learners.map(learner => ({
+    id: learner.id,
+    fullName: learner.fullName,
+    email: learner.email,
+    mentors: learner.mentors.map(mentorId => mentorMap[mentorId])
+  }));
   // 👆 ==================== TASK 2 END ====================== 👆
 
   const cardsContainer = document.querySelector('.cards')
@@ -53,6 +74,25 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     const mentorsHeading = document.createElement('h4')
     const mentorsList = document.createElement('ul')
 
+    card.classList.add('card');
+    heading.classList.add('heading');
+    email.classList.add('email');
+    mentorsHeading.classList.add('mentors-heading');
+    mentorsList.classList.add('mentors-list');
+
+    heading.textContent = learner.fullName;
+    email.textContent = learner.email;
+    mentorsHeading.textContent = 'Mentors';
+
+    learner.mentors.forEach(mentor => {
+      const mentorItem = document.createElement('li');
+      mentorItem.textContent = mentor;
+      mentorsList.appendChild(mentorItem);
+    });
+
+    card.appendChild(heading);
+    card.appendChild(email);
+    card.appendChild(mentorsHeading);
     // 👆 ==================== TASK 3 END ====================== 👆
 
     // 👆 WORK ONLY ABOVE THIS LINE 👆
