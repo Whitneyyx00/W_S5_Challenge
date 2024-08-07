@@ -50,7 +50,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     id: learner.id,
     fullName: learner.fullName,
     email: learner.email,
-    mentors: learner.mentors.map(mentorId => mentorMap[mentorId])
+    mentors: learner.mentors.map(mentorId => mentorMap[mentorId]).filter(name => name)
   }));
   // 👆 ==================== TASK 2 END ====================== 👆
 
