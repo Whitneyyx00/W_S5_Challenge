@@ -82,6 +82,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     mentorsList.classList.add('mentors-list', 'hidden');
 
     mentorsList.style.display = 'none';
+    mentorsList.style.visibility = 'hidden';
 
     heading.textContent = learner.fullName;
     email.textContent = learner.email;
