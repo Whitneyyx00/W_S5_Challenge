@@ -14,12 +14,11 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   let learners = [] // fix this
 
   try {
-    const learnersResponse = await 
-  axios.get('http://localhost:3003/api/learners');
+    const [learnersResponse, mentorsResponse] = await Promise.all([ 
+  axios.get('http://localhost:3003/api/learners'),
+  axios.get('http://localhost:3003/api/mentors')
+    ]);
     learners = learnersResponse.data;
-
-    const mentorsResponse = await 
-  axios.get('http://localhost:3003/api/mentors');
     mentors = mentorsResponse.data;
   } catch (error) {
     console.error('Error fetching data:', error.message);
