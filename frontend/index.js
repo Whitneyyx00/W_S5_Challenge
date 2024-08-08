@@ -79,7 +79,9 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     heading.classList.add('heading');
     email.classList.add('email');
     mentorsHeading.classList.add('mentors-heading');
-    mentorsList.classList.add('mentors-list', 'hidden');
+
+    mentorsList.classList.add('mentors-list');
+    mentorsList.style.display = 'none'; // Hide the list on page load
 
     heading.textContent = learner.fullName;
     email.textContent = learner.email;
@@ -103,9 +105,6 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     // 👆 WORK ONLY ABOVE THIS LINE 👆
     // 👆 WORK ONLY ABOVE THIS LINE 👆
     // 👆 WORK ONLY ABOVE THIS LINE 👆
-    card.appendChild(mentorsList)
-    card.dataset.fullName = learner.fullName
-    cardsContainer.appendChild(card)
 
     card.addEventListener('click', evt => {
       const mentorsHeading = card.querySelector('h4')
@@ -130,18 +129,22 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
       } else {
         // clicked on mentors, we toggle and select no matter what
         card.classList.add('selected')
-        if (mentorsHeading.classList.contains('open')) {
-          mentorsHeading.classList.replace('open', 'closed')
+        mentorsHeading.classList.toggle('open');
+        mentorsHeading.classList.toggle('closed');
+
+        if (mentorsList.style.display === 'none') {
+          mentorsList.style.display = 'block'; // Show the mentors list
         } else {
-          mentorsHeading.classList.replace('closed', 'open')
+          mentorsList.style.display = 'none'; // Hide the mentors list
         }
+
         if (!isCardSelected) {
           // if card was not selected adjust texts
           heading.textContent += `, ID ${learner.id}`
           info.textContent = `The selected learner is ${learner.fullName}`
         }
       }
-    })
+    });
   }
 
   const footer = document.querySelector('footer')
