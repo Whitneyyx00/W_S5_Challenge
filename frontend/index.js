@@ -41,7 +41,7 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
   //   ]`
   // }
   const mentorMap = mentors.reduce((map, mentor) => {
-    map[mentor.id] = mentor.name;
+    map[mentor.id] = `${mentor.firstName} ${mentor.lastName}`;
     return map;
   }, {});
 
