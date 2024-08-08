@@ -83,6 +83,9 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     mentorsList.classList.add('mentors-list');
     mentorsList.style.display = 'none'; // Hide the list on page load
 
+    // Add 'closed' class to mentorsHeading when the list is hidden
+    mentorsHeading.classList.add('closed');
+
     heading.textContent = learner.fullName;
     email.textContent = learner.email;
     mentorsHeading.textContent = 'Mentors';
