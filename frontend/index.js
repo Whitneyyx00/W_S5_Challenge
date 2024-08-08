@@ -83,12 +83,10 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
 
     var mentorList = document.getElementById('mentorsList');
 
-    mentorsList.style.display = 'none';
-
     window.onload = function() {
       setTimeout(function() {
         mentorsList.style.display = 'block';
-      }, 1000);
+      }, 3000);
     };
 
     heading.textContent = learner.fullName;
