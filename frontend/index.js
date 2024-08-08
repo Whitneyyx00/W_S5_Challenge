@@ -81,10 +81,9 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     mentorsHeading.classList.add('mentors-heading');
     mentorsList.classList.add('mentors-list', 'hidden');
 
-    var mentorList = document.getElementById('mentors-list');
-
     window.onload = function() {
       setTimeout(function() {
+      var ul = document.getElementById('mentors-list');
         mentorsList.style.display = 'block';
       }, 3000);
     };
