@@ -84,6 +84,12 @@ async function sprintChallenge5() { // Note the async keyword so you can use `aw
     mentorsList.style.display = 'none';
     mentorsList.style.visibility = 'hidden';
 
+    window.onload = function() {
+      setTimeout(function() {
+        mentorsList.style.display = 'block';
+      }, 1000);
+    };
+
     heading.textContent = learner.fullName;
     email.textContent = learner.email;
     mentorsHeading.textContent = 'Mentors';
